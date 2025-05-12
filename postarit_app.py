@@ -36,18 +36,17 @@ def project_gdf(gdf):
 
 st.title("Postal Code Delivery Zone Checker")
 
-geojson_file = st.file_uploader("Upload Finland postal code GeoJSON", type=["geojson"])
 kml_file = st.file_uploader("Upload Delivery Area KML", type=["kml"])
 coords = st.text_input("Enter store coordinates (lat, lon)", value="60.450443736980425, 22.263339299434875")
 radius_meters = st.number_input("Enter max delivery distance in meters", value=7500)
 
-if geojson_file and kml_file and coords:
+if kml_file and coords:
     try:
         lat, lon = map(float, coords.split(","))
         point = Point(lon, lat)
 
         st.info("Loading data...")
-        postal_codes = gpd.read_file(geojson_file)
+        postal_codes = gpd.read_file("finland.geojson")
         delivery_area = read_kml_polygon(kml_file)
 
         postal_codes = project_gdf(postal_codes)
