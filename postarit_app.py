@@ -85,7 +85,7 @@ if kml_file and coords:
         if final:
             st.success("Postal codes with >=2% total (delivery ∩ radius) overlap:")
             for code, delivery_pct, radius_pct, total_pct in final:
-                st.write(f"{code}, Delivery area {delivery_pct*100:.0f}%, delivery radius {radius_pct*100:.0f}%, total {total_pct*100:.0f}%;")
+                st.write(f"{code}, Delivery area {delivery_pct*100:.0f}%, delivery radius {radius_pct*100:.0f}%, total;{total_pct*100:.0f}%")
         else:
             st.warning("No postal code areas met the overlap criteria.")
     except Exception as e:
